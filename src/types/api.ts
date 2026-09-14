@@ -17,6 +17,12 @@ export interface LoginResponse {
   role: Role;
 }
 
+export interface RegisterRequest {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface RefreshRequest {
   refreshToken: string;
 }
@@ -26,17 +32,11 @@ export interface RefreshResponse {
   refreshToken: string;
 }
 
-export interface UserRequest {
-  name: string;
-  email: string;
-  password: string;
-}
-
 export interface UserResponse {
   id: string;
   name: string;
   role: Role;
-  createdAt: string; // ISO-8601
+  createdAt: string;
 }
 
 export interface UpdateProfileRequest {
@@ -92,13 +92,15 @@ export interface ReviewResponse {
 
 export interface ReservationRequest {
   attractionId: string;
-  reservedFor: string; // ISO-8601
+  reservedFor: string; // ISO-8601 LocalDateTime
 }
 
 export interface ReservationResponse {
   id: string;
   touristId: string;
-  attractionID: string; // matches Java field name (typo in backend)
+  touristName: string;
+  attractionID: string; // matches Java field name
+  attractionTitle: string;
   status: Status;
   reservedFor: string;
   createdAt: string;
@@ -110,7 +112,7 @@ export interface SpringPage<T> {
   content: T[];
   totalElements: number;
   totalPages: number;
-  number: number; // current page (0-indexed)
+  number: number;
   size: number;
   first: boolean;
   last: boolean;
