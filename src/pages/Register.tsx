@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import type { FormEvent, ChangeEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import api from '@/services/api';
+import type { RegisterRequest } from '@/types/api';
 
-export default function Login() {
-  const { login } = useAuth();
+export default function Register() {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [form, setForm] = useState<RegisterRequest>({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,13 +19,17 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const data = await login(email, password);
-      navigate(data.role === 'GUIDE' || data.role === 'ADMIN' ? '/guide/dashboard' : '/', { replace: true });
+      await api.post('/api/v1/auth/register', form);
+      navigate('/login', { replace: true });
     } catch {
-      setError('Credenciais inválidas. Tente novamente.');
+      setError('Erro ao criar conta. Verifique os dados ou tente outro e-mail.');
     } finally {
       setLoading(false);
     }
+  }
+
+  function onChange(field: keyof RegisterRequest) {
+    return (e: ChangeEvent<HTMLInputElement>) => setForm({ ...form, [field]: e.target.value });
   }
 
   return (
@@ -37,19 +40,32 @@ export default function Login() {
             Titureco
           </CardTitle>
           <CardDescription className="text-muted-foreground">
-            Acesse sua conta para continuar
+            Crie sua conta para explorar atrações
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Nome</Label>
+              <Input
+                id="name"
+                placeholder="Seu nome"
+                value={form.name}
+                onChange={onChange('name')}
+                required
+                minLength={2}
+                maxLength={100}
+                autoComplete="name"
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">E-mail</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="seu@email.com"
-                value={email}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)}
+                value={form.email}
+                onChange={onChange('email')}
                 required
                 autoComplete="email"
               />
@@ -59,23 +75,25 @@ export default function Login() {
               <Input
                 id="password"
                 type="password"
-                placeholder="••••••"
-                value={password}
-                onChange={(e: ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)}
+                placeholder="Mínimo 6 caracteres"
+                value={form.password}
+                onChange={onChange('password')}
                 required
-                autoComplete="current-password"
+                minLength={6}
+                maxLength={50}
+                autoComplete="new-password"
               />
             </div>
             {error && (
               <p className="text-sm text-destructive">{error}</p>
             )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Entrando…' : 'Entrar'}
+              {loading ? 'Criando…' : 'Criar Conta'}
             </Button>
             <p className="text-center text-sm text-muted-foreground">
-              Não tem conta?{' '}
-              <button type="button" onClick={() => navigate('/register')} className="text-primary underline underline-offset-2">
-                Cadastrar
+              Já tem conta?{' '}
+              <button type="button" onClick={() => navigate('/login')} className="text-primary underline underline-offset-2">
+                Entrar
               </button>
             </p>
           </form>
