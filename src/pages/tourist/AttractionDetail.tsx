@@ -12,7 +12,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
-import Navbar from '@/components/Navbar';
+
+import attractionImages from '@/data/attraction-images.json';
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
@@ -98,35 +99,32 @@ export default function AttractionDetail() {
 
   if (loading) {
     return (
-      <div className="min-h-screen">
-        <Navbar />
+      <>
         <div className="flex items-center justify-center py-32">
           <div className="h-8 w-8 animate-spin rounded-full border-4 border-accent border-t-transparent" />
         </div>
-      </div>
+      </>
     );
   }
 
   if (!attraction) {
     return (
-      <div className="min-h-screen">
-        <Navbar />
+      <>
         <p className="text-center text-muted-foreground py-32">Atração não encontrada.</p>
-      </div>
+      </>
     );
   }
 
   const a = attraction;
+  const imageUrl = (attractionImages as Record<string, string>)[a.id] || `https://picsum.photos/seed/${a.id}/600/400`;
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-
+    <>
       <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">
         {/* ── Header ──────────────────────────────────────────── */}
         <div className="grid md:grid-cols-2 gap-6">
           <img
-            src={`https://picsum.photos/seed/${a.id}/600/400`}
+            src={imageUrl}
             alt={a.title}
             className="w-full h-64 md:h-80 object-cover rounded-xl"
           />
@@ -194,7 +192,7 @@ export default function AttractionDetail() {
 
           {/* Review form (TOURIST only) */}
           {user?.role === 'TOURIST' && (
-            <form onSubmit={handleReview} className="space-y-3 p-4 rounded-xl border border-border/50 bg-card/60">
+            <form onSubmit={handleReview} className="space-y-3 p-4 rounded-xl border border-border bg-card shadow-sm">
               <div className="flex items-center gap-3">
                 <Label>Nota:</Label>
                 <div className="flex gap-1">
@@ -203,7 +201,7 @@ export default function AttractionDetail() {
                       key={n}
                       type="button"
                       onClick={() => setRating(n)}
-                      className={`text-xl transition-colors ${n <= rating ? 'text-yellow-400' : 'text-muted-foreground/30'}`}
+                      className={`text-xl transition-colors ${n <= rating ? 'text-amber-500' : 'text-muted-foreground/30'}`}
                     >
                       ★
                     </button>
@@ -230,10 +228,10 @@ export default function AttractionDetail() {
           ) : (
             <div className="space-y-3">
               {reviews.map((r) => (
-                <div key={r.id} className="p-3 rounded-lg border border-border/30 bg-card/40 space-y-1">
+                <div key={r.id} className="p-3 rounded-lg border border-border bg-muted/50 space-y-1">
                   <div className="flex items-center justify-between">
                     <span className="font-medium text-sm">{r.touristName}</span>
-                    <span className="text-yellow-400 text-sm">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
+                    <span className="text-amber-500 text-sm">{'★'.repeat(r.rating)}{'☆'.repeat(5 - r.rating)}</span>
                   </div>
                   {r.comment && <p className="text-sm text-muted-foreground">{r.comment}</p>}
                   <p className="text-xs text-muted-foreground/60">
@@ -245,6 +243,6 @@ export default function AttractionDetail() {
           )}
         </section>
       </div>
-    </div>
+    </>
   );
 }

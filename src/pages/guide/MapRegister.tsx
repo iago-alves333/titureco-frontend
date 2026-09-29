@@ -11,7 +11,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import Navbar from '@/components/Navbar';
+
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
@@ -81,11 +81,10 @@ export default function MapRegister() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
+    <div className="flex flex-col" style={{ height: 'calc(100vh - 3.5rem)' }}>
 
       {/* ── Controls ─────────────────────────────────────────── */}
-      <div className="flex items-center gap-4 px-4 py-2 bg-background/80 backdrop-blur-sm border-b border-border/40">
+      <div className="flex items-center gap-4 px-4 py-2 bg-card border-b border-border">
         <span className="text-sm text-muted-foreground">
           {attractions.length} atração(ões) no mapa
         </span>
@@ -117,7 +116,7 @@ export default function MapRegister() {
 
               <div className="space-y-2">
                 <Label>Localização (clique no mapa abaixo)</Label>
-                <p className="text-xs text-muted-foreground">
+                <p className="text-xs text-muted-foreground font-mono">
                   Lat: {form.latitude.toFixed(5)} · Lng: {form.longitude.toFixed(5)}
                 </p>
                 <div className="h-52 w-full rounded-md overflow-hidden border border-border">

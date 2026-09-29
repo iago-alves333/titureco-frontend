@@ -30,10 +30,10 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Card className="w-full max-w-md border-border/50 bg-card/80 backdrop-blur-sm">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <Card className="w-full max-w-md border border-border bg-card shadow-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+          <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
             Titureco
           </CardTitle>
           <CardDescription className="text-muted-foreground">

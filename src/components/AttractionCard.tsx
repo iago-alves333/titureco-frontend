@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import type { AttractionResponse } from '@/types/api';
+import attractionImages from '@/data/attraction-images.json';
 
 interface Props {
   attraction: AttractionResponse;
@@ -7,15 +8,16 @@ interface Props {
 
 export default function AttractionCard({ attraction: a }: Props) {
   const navigate = useNavigate();
+  const imageUrl = (attractionImages as Record<string, string>)[a.id] || `https://picsum.photos/seed/${a.id}/400/300`;
 
   return (
     <div
       onClick={() => navigate(`/attractions/${a.id}`)}
-      className="group cursor-pointer rounded-xl border border-border/50 bg-card/60 backdrop-blur-sm overflow-hidden transition-all hover:shadow-lg hover:border-primary/30 hover:-translate-y-1"
+      className="group cursor-pointer rounded-xl border border-border bg-card shadow-sm overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-1"
     >
       <div className="relative h-48 overflow-hidden bg-muted">
         <img
-          src={`https://picsum.photos/seed/${a.id}/400/300`}
+          src={imageUrl}
           alt={a.title}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"

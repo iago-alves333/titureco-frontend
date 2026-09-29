@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 import api from '@/services/api';
 import type { AttractionResponse, SpringPage } from '@/types/api';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/Navbar';
+
 import { useNavigate } from 'react-router-dom';
 
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -71,11 +71,10 @@ export default function NearbyMap() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
-      <Navbar />
+    <div className="flex flex-col" style={{ height: 'calc(100vh - 3.5rem)' }}>
 
       {/* ── Controls ─────────────────────────────────────────── */}
-      <div className="flex items-center gap-4 px-4 py-2 bg-background/80 backdrop-blur-sm border-b border-border/40">
+      <div className="flex items-center gap-4 px-4 py-2 bg-card border-b border-border">
         <label className="text-sm text-muted-foreground whitespace-nowrap">
           Raio: {radiusKm} km
         </label>
@@ -103,7 +102,7 @@ export default function NearbyMap() {
                 <Popup>
                   <div className="space-y-1 min-w-[180px]">
                     <p className="font-semibold text-sm">{a.title}</p>
-                    <p className="text-xs text-gray-600">{a.guideName}</p>
+                    <p className="text-xs text-muted-foreground">{a.guideName}</p>
                     <div className="flex justify-between text-xs">
                       <span>R$ {Number(a.price || 0).toFixed(2)}</span>
                       <span>⭐ {Number(a.ratingAverage || 0).toFixed(1)}</span>

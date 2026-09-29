@@ -4,7 +4,7 @@ import api from '@/services/api';
 import type { AttractionResponse, SpringPage } from '@/types/api';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/Navbar';
+
 import AttractionCard from '@/components/AttractionCard';
 import { useNavigate } from 'react-router-dom';
 
@@ -50,12 +50,11 @@ export default function Feed() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <>
 
       {/* ── Hero + Search ────────────────────────────────────── */}
-      <section className="px-4 pt-8 pb-6 text-center">
-        <h2 className="text-3xl font-bold tracking-tight mb-1 bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+      <section className="mx-auto max-w-7xl px-4 pt-8 pb-6 text-center">
+        <h2 className="text-3xl font-bold tracking-tight mb-1 text-foreground">
           Descubra atrações incríveis
         </h2>
         <p className="text-muted-foreground mb-6">
@@ -76,7 +75,7 @@ export default function Feed() {
       </section>
 
       {/* ── Grid ─────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-6xl px-4 pb-12">
+      <section className="mx-auto max-w-7xl px-4 pb-12">
         {attractions.length === 0 && !loading ? (
           <p className="text-center text-muted-foreground py-16">Nenhuma atração encontrada.</p>
         ) : (
@@ -95,6 +94,6 @@ export default function Feed() {
           </div>
         )}
       </section>
-    </div>
+    </>
   );
 }

@@ -5,13 +5,13 @@ import type { ReservationResponse, AttractionResponse, SpringPage } from '@/type
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import Navbar from '@/components/Navbar';
+
 
 const STATUS_COLORS: Record<string, string> = {
-  PENDING: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
-  CONFIRMED: 'bg-green-500/20 text-green-400 border-green-500/30',
-  COMPLETED: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-  CANCELLED: 'bg-red-500/20 text-red-400 border-red-500/30',
+  PENDING: 'bg-amber-100 text-amber-800 border-amber-300',
+  CONFIRMED: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+  COMPLETED: 'bg-blue-100 text-blue-800 border-blue-300',
+  CANCELLED: 'bg-red-100 text-red-800 border-red-300',
 };
 
 export default function Participants() {
@@ -50,8 +50,7 @@ export default function Participants() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
+    <>
       <main className="mx-auto max-w-5xl px-4 py-8">
         <Button variant="ghost" size="sm" onClick={() => navigate('/guide/dashboard')} className="mb-4">
           ← Voltar
@@ -71,7 +70,7 @@ export default function Participants() {
         ) : reservations.length === 0 ? (
           <p className="text-center text-muted-foreground py-16">Nenhuma reserva para esta atração.</p>
         ) : (
-          <div className="rounded-xl border border-border/50 bg-card/60 backdrop-blur-sm overflow-hidden">
+          <div className="rounded-xl border border-border bg-card shadow-sm overflow-hidden">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -112,6 +111,6 @@ export default function Participants() {
           </div>
         )}
       </main>
-    </div>
+    </>
   );
 }
