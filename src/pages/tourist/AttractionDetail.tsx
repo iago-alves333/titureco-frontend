@@ -33,6 +33,7 @@ export default function AttractionDetail() {
 
   // Reservation form
   const [reserveDate, setReserveDate] = useState('');
+  const [reserveHour, setReserveHour] = useState('09:00');
   const [reserveMsg, setReserveMsg] = useState('');
   const [reserving, setReserving] = useState(false);
 
@@ -66,11 +67,12 @@ export default function AttractionDetail() {
     try {
       const body: ReservationRequest = {
         attractionId: id,
-        reservedFor: new Date(reserveDate).toISOString().replace('Z', ''),
+        reservedFor: `${reserveDate}T${reserveHour}:00`,
       };
       await api.post('/api/v1/reservations', body);
       setReserveMsg('✅ Reserva criada com sucesso!');
       setReserveDate('');
+      setReserveHour('09:00');
     } catch {
       setReserveMsg('❌ Erro ao reservar. Verifique a data ou tente novamente.');
     } finally {
@@ -163,14 +165,32 @@ export default function AttractionDetail() {
             <h2 className="text-lg font-semibold">Reservar esta atração</h2>
             <form onSubmit={handleReserve} className="flex flex-wrap gap-3 items-end">
               <div className="space-y-1">
-                <Label htmlFor="reserveDate">Data e hora</Label>
+                <Label htmlFor="reserveDate">Data</Label>
                 <Input
                   id="reserveDate"
-                  type="datetime-local"
+                  type="date"
                   value={reserveDate}
+                  onClick={(e) => {
+                    try { (e.target as HTMLInputElement).showPicker(); } catch {}
+                  }}
                   onChange={(e: ChangeEvent<HTMLInputElement>) => setReserveDate(e.target.value)}
                   required
                 />
+              </div>
+              <div className="space-y-1">
+                <Label htmlFor="reserveHour">Hora</Label>
+                <select
+                  id="reserveHour"
+                  value={reserveHour}
+                  onChange={(e) => setReserveHour(e.target.value)}
+                  className="flex h-8 w-24 rounded-lg border border-input bg-transparent px-3 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+                  required
+                >
+                  {Array.from({ length: 24 }, (_, i) => {
+                    const h = i.toString().padStart(2, '0');
+                    return <option key={h} value={`${h}:00`}>{h}:00</option>;
+                  })}
+                </select>
               </div>
               <Button type="submit" disabled={reserving}>
                 {reserving ? 'Reservando…' : 'Reservar'}
