@@ -1,6 +1,8 @@
+import type { ReactNode } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from '@/contexts/AuthContext';
 import { ProtectedRoute } from '@/components/ProtectedRoute';
+import Navbar from '@/components/Navbar';
 
 // Pages
 import Login from '@/pages/Login';
@@ -12,32 +14,43 @@ import GuideDashboard from '@/pages/guide/Dashboard';
 import GuideParticipants from '@/pages/guide/Participants';
 import GuideMapRegister from '@/pages/guide/MapRegister';
 
+function Layout({ children }: { children: ReactNode }) {
+  return (
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main>{children}</main>
+    </div>
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          {/* Public */}
-          <Route path="/" element={<Feed />} />
+          {/* Public (no Layout — full-bleed auth pages) */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/nearby" element={<NearbyMap />} />
-          <Route path="/attractions/:id" element={<AttractionDetail />} />
+
+          {/* Public (with Layout) */}
+          <Route path="/" element={<Layout><Feed /></Layout>} />
+          <Route path="/nearby" element={<Layout><NearbyMap /></Layout>} />
+          <Route path="/attractions/:id" element={<Layout><AttractionDetail /></Layout>} />
 
           {/* Guide */}
           <Route path="/guide/dashboard" element={
             <ProtectedRoute allowedRoles={['GUIDE', 'ADMIN']}>
-              <GuideDashboard />
+              <Layout><GuideDashboard /></Layout>
             </ProtectedRoute>
           } />
           <Route path="/guide/map" element={
             <ProtectedRoute allowedRoles={['GUIDE', 'ADMIN']}>
-              <GuideMapRegister />
+              <Layout><GuideMapRegister /></Layout>
             </ProtectedRoute>
           } />
           <Route path="/guide/attractions/:id/participants" element={
             <ProtectedRoute allowedRoles={['GUIDE', 'ADMIN']}>
-              <GuideParticipants />
+              <Layout><GuideParticipants /></Layout>
             </ProtectedRoute>
           } />
         </Routes>

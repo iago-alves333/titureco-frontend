@@ -22,11 +22,12 @@ export default function Navbar() {
     : NAV_LINKS_TOURIST;
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between px-6 py-3 bg-background/70 backdrop-blur-md border-b border-border/40">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
       <nav className="flex items-center gap-4">
         <span
           onClick={() => navigate('/')}
-          className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent cursor-pointer select-none"
+          className="text-xl font-bold text-foreground cursor-pointer select-none"
         >
           Titureco
         </span>
@@ -56,6 +57,7 @@ export default function Navbar() {
             <Button size="sm" onClick={() => navigate('/register')}>Cadastrar</Button>
           </>
         )}
+      </div>
       </div>
     </header>
   );

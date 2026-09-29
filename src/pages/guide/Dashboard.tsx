@@ -4,7 +4,7 @@ import api from '@/services/api';
 import type { AttractionResponse, SpringPage } from '@/types/api';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
-import Navbar from '@/components/Navbar';
+
 import AttractionCard from '@/components/AttractionCard';
 
 export default function GuideDashboard() {
@@ -44,9 +44,8 @@ export default function GuideDashboard() {
   }
 
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <main className="mx-auto max-w-6xl px-4 py-8">
+    <>
+      <main className="mx-auto max-w-7xl px-4 py-8">
         <div className="mb-6 flex items-center justify-between">
           <h2 className="text-2xl font-bold">Minhas Atrações</h2>
           <Button onClick={() => navigate('/guide/map')}>+ Cadastrar Nova</Button>
@@ -84,6 +83,6 @@ export default function GuideDashboard() {
           </div>
         )}
       </main>
-    </div>
+    </>
   );
 }

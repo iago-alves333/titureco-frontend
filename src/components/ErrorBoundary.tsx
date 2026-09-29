@@ -23,15 +23,18 @@ export class ErrorBoundary extends Component<Props, State> {
   render() {
     if (this.state.error) {
       return (
-        <div style={{ padding: 32, fontFamily: 'monospace', color: '#ff6b6b', background: '#1a1a2e', minHeight: '100vh' }}>
-          <h1>💥 React Crash</h1>
-          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word' }}>
+        <div className="p-8 font-mono text-destructive bg-background min-h-screen">
+          <h1 className="text-2xl font-bold mb-4">💥 React Crash</h1>
+          <pre className="whitespace-pre-wrap break-words mb-2">
             {this.state.error.message}
           </pre>
-          <pre style={{ whiteSpace: 'pre-wrap', wordBreak: 'break-word', fontSize: 12, color: '#888' }}>
+          <pre className="whitespace-pre-wrap break-words text-xs text-muted-foreground">
             {this.state.error.stack}
           </pre>
-          <button onClick={() => window.location.reload()} style={{ marginTop: 16, padding: '8px 16px', cursor: 'pointer' }}>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 rounded-lg border border-border bg-card text-foreground text-sm font-medium hover:bg-muted transition-colors cursor-pointer"
+          >
             Recarregar
           </button>
         </div>
