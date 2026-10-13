@@ -106,15 +106,14 @@ export interface ReservationResponse {
   createdAt: string;
 }
 
-// ──── Spring Page ─────────────────────────────────────────────────────────────
+// ──── Page DTO ───────────────────────────────────────────────────────────────
 
-export interface SpringPage<T> {
+export interface PageDTO<T> {
   content: T[];
-  totalElements: number;
   totalPages: number;
-  number: number;
-  size: number;
-  first: boolean;
+  totalElements: number;
+  currentPage: number;
   last: boolean;
-  empty: boolean;
 }
+
+export type SpringPage<T> = PageDTO<T>;

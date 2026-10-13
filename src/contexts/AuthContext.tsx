@@ -41,6 +41,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .finally(() => setIsLoading(false));
   }, []);
 
+  // Listen for global auth:logout events triggered by 401 interceptor
+  useEffect(() => {
+    const handleAuthLogout = () => {
+      setUser(null);
+    };
+    window.addEventListener('auth:logout', handleAuthLogout);
+    return () => window.removeEventListener('auth:logout', handleAuthLogout);
+  }, []);
+
   const login = useCallback(async (email: string, password: string): Promise<LoginResponse> => {
     const { data } = await api.post<LoginResponse>('/api/v1/auth/login', { email, password });
     localStorage.setItem('accessToken', data.accessToken);
