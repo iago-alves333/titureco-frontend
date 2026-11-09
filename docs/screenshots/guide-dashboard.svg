@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+    
+    <!-- Window chrome -->
+    <rect width="960" height="580" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect width="960" height="38" rx="12" fill="#1e293b"/>
+    <rect y="26" width="960" height="12" fill="#1e293b"/>
+    <circle cx="22" cy="19" r="6" fill="#ef4444"/>
+    <circle cx="40" cy="19" r="6" fill="#f59e0b"/>
+    <circle cx="58" cy="19" r="6" fill="#10b981"/>
+    <!-- URL bar -->
+    <rect x="180" y="8" width="600" height="22" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="480.0" y="23" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">🔒 https://titureco.com/guide/dashboard</text>
+    <!-- App area -->
+    <rect y="38" width="960" height="542" rx="0" fill="#f8fafc"/>
+    
+    
+    <!-- Navbar -->
+    <rect y="38" width="960" height="54" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="32" y="72" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="bold">Titureco</text>
+    
+    <!-- Nav tabs -->
+    <text x="140" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Explorar</text>
+    <text x="220" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Perto de Mim</text>
+    <text x="330" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Minhas Reservas</text>
+    <text x="470" y="71" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Dashboard</text>
+
+    <!-- User badge -->
+    <rect x="750" y="50" width="180" height="30" rx="15" fill="#f1f5f9"/>
+    <circle cx="765" cy="65" r="10" fill="#10b981"/>
+    <text x="765" y="69" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">G</text>
+    <text x="782" y="69" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="500">Iago Santos · Guia</text>
+    
+    
+    <!-- Top Action bar -->
+    <text x="40" y="125" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold">Dashboard do Guia</text>
+    <text x="40" y="146" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Métricas em tempo real, capacidade de vagas e participantes por atração</text>
+    <rect x="780" y="112" width="140" height="36" rx="8" fill="#2563eb"/>
+    <text x="850" y="135" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600" text-anchor="middle">+ Nova no Mapa</text>
+
+    <!-- 4 KPI Cards -->
+    <g transform="translate(40, 168)">
+      <rect width="205" height="80" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="16" y="28" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600">ATRAÇÕES ATIVAS</text>
+      <text x="16" y="60" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold">4</text>
+    </g>
+    <g transform="translate(265, 168)">
+      <rect width="205" height="80" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="16" y="28" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600">TOTAL DE RESERVAS</text>
+      <text x="16" y="60" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold">52</text>
+    </g>
+    <g transform="translate(490, 168)">
+      <rect width="205" height="80" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="16" y="28" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600">CONFIRMADAS / CONCLUÍDAS</text>
+      <text x="16" y="60" fill="#10b981" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold">46</text>
+    </g>
+    <g transform="translate(715, 168)">
+      <rect width="205" height="80" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="16" y="28" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600">AVALIAÇÃO MÉDIA</text>
+      <text x="16" y="60" fill="#f59e0b" font-family="DejaVu Sans, sans-serif" font-size="26" font-weight="bold">★ 4.9</text>
+    </g>
+
+    <!-- Status Breakdown Chart -->
+    <g transform="translate(40, 264)">
+      <rect width="880" height="92" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <text x="16" y="26" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Distribuição de Reservas por Status</text>
+      <!-- Multi-segment bar -->
+      <rect x="16" y="38" width="848" height="14" rx="7" fill="#e2e8f0"/>
+      <!-- Confirmadas (55%) -->
+      <rect x="16" y="38" width="466" height="14" rx="7" fill="#10b981"/>
+      <!-- Concluídas (30%) -->
+      <rect x="482" y="38" width="254" height="14" fill="#3b82f6"/>
+      <!-- Pendentes (10%) -->
+      <rect x="736" y="38" width="85" height="14" fill="#f59e0b"/>
+      <!-- Canceladas (5%) -->
+      <rect x="821" y="38" width="43" height="14" rx="7" fill="#ef4444"/>
+      
+      <!-- Legend items with explicit X coordinates -->
+      <circle cx="24" cy="74" r="5" fill="#10b981"/>
+      <text x="35" y="78" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="500">Confirmadas: 28 (55%)</text>
+      
+      <circle cx="220" cy="74" r="5" fill="#3b82f6"/>
+      <text x="231" y="78" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="500">Concluídas: 18 (35%)</text>
+      
+      <circle cx="410" cy="74" r="5" fill="#f59e0b"/>
+      <text x="421" y="78" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="500">Pendentes: 4 (8%)</text>
+      
+      <circle cx="580" cy="74" r="5" fill="#ef4444"/>
+      <text x="591" y="78" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="500">Canceladas: 2 (2%)</text>
+    </g>
+
+    <!-- Managed Attractions Grid Header -->
+    <text x="40" y="382" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="16" font-weight="bold">Minhas Atrações Cadastradas</text>
+
+    <!-- Mini-card 1 -->
+    <g transform="translate(40, 398)">
+      <rect width="425" height="140" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="116" height="116" rx="8" fill="#38bdf8"/>
+      <text x="140" y="34" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="bold">Piscinas Naturais do Seixas</text>
+      <text x="140" y="54" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600">R$ 90,00 · 8 vagas/dia</text>
+      <text x="140" y="74" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">Total de participantes: 32 · ★ 4.9</text>
+      <rect x="140" y="94" width="110" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="195" y="112" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Participantes</text>
+      <rect x="258" y="94" width="70" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="293" y="112" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Editar</text>
+      <rect x="336" y="94" width="30" height="28" rx="6" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="351" y="112" fill="#b91c1c" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">✕</text>
+    </g>
+
+    <!-- Mini-card 2 -->
+    <g transform="translate(495, 398)">
+      <rect width="425" height="140" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect x="12" y="12" width="116" height="116" rx="8" fill="#14b8a6"/>
+      <text x="140" y="34" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="bold">Farol do Cabo Branco</text>
+      <text x="140" y="54" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600">R$ 40,00 · 20 vagas/dia</text>
+      <text x="140" y="74" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">Total de participantes: 20 · ★ 4.9</text>
+      <rect x="140" y="94" width="110" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="195" y="112" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Participantes</text>
+      <rect x="258" y="94" width="70" height="28" rx="6" fill="#f1f5f9" stroke="#cbd5e1"/>
+      <text x="293" y="112" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="600" text-anchor="middle">Editar</text>
+      <rect x="336" y="94" width="30" height="28" rx="6" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="351" y="112" fill="#b91c1c" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">✕</text>
+    </g>
+    </svg>

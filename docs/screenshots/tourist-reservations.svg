@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+    
+    <!-- Window chrome -->
+    <rect width="960" height="580" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect width="960" height="38" rx="12" fill="#1e293b"/>
+    <rect y="26" width="960" height="12" fill="#1e293b"/>
+    <circle cx="22" cy="19" r="6" fill="#ef4444"/>
+    <circle cx="40" cy="19" r="6" fill="#f59e0b"/>
+    <circle cx="58" cy="19" r="6" fill="#10b981"/>
+    <!-- URL bar -->
+    <rect x="180" y="8" width="600" height="22" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="480.0" y="23" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">🔒 https://titureco.com/reservations</text>
+    <!-- App area -->
+    <rect y="38" width="960" height="542" rx="0" fill="#f8fafc"/>
+    
+    
+    <!-- Navbar -->
+    <rect y="38" width="960" height="54" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="32" y="72" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="bold">Titureco</text>
+    
+    <!-- Nav tabs -->
+    <text x="140" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Explorar</text>
+    <text x="220" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Perto de Mim</text>
+    <text x="330" y="71" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Minhas Reservas</text>
+    <text x="470" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Dashboard</text>
+
+    <!-- User badge -->
+    <rect x="750" y="50" width="180" height="30" rx="15" fill="#f1f5f9"/>
+    <circle cx="765" cy="65" r="10" fill="#2563eb"/>
+    <text x="765" y="69" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">T</text>
+    <text x="782" y="69" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="500">Iago Santos · Turista</text>
+    
+    
+    <!-- Header + Filter Pills -->
+    <text x="40" y="125" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="22" font-weight="bold">Minhas Reservas</text>
+    <text x="40" y="146" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Acompanhe confirmações, conclua passeios e avalie atrações</text>
+    
+    <!-- Status Filter pills -->
+    <g transform="translate(560, 118)">
+      <rect x="0" y="0" width="60" height="28" rx="14" fill="#2563eb"/>
+      <text x="30" y="18" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Todas</text>
+      <rect x="68" y="0" width="75" height="28" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="105" y="18" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">Pendentes</text>
+      <rect x="151" y="0" width="85" height="28" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="193" y="18" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">Confirmadas</text>
+      <rect x="244" y="0" width="80" height="28" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+      <text x="284" y="18" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">Concluídas</text>
+    </g>
+
+    <!-- Table Container -->
+    <g transform="translate(40, 175)">
+      <rect width="880" height="340" rx="10" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      
+      <!-- Table Header -->
+      <rect width="880" height="42" rx="10" fill="#f8fafc"/>
+      <rect y="30" width="880" height="12" fill="#f8fafc"/>
+      <line x1="0" y1="42" x2="880" y2="42" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="24" y="26" fill="#475569" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">ATRAÇÃO</text>
+      <text x="320" y="26" fill="#475569" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">DATA E HORA</text>
+      <text x="520" y="26" fill="#475569" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">STATUS</text>
+      <text x="856" y="26" fill="#475569" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="end">AÇÃO</text>
+
+      <!-- Row 1: CONFIRMED -->
+      <text x="24" y="80" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Piscinas Naturais do Seixas</text>
+      <text x="320" y="80" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">15/11/2026 às 09:00</text>
+      <rect x="520" y="64" width="95" height="24" rx="12" fill="#dcfce7" stroke="#86efac"/>
+      <text x="567" y="80" fill="#15803d" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">CONFIRMED</text>
+      <rect x="790" y="64" width="66" height="26" rx="6" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="823" y="81" fill="#b91c1c" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Cancelar</text>
+      <line x1="0" y1="108" x2="880" y2="108" stroke="#f1f5f9" stroke-width="1"/>
+
+      <!-- Row 2: PENDING -->
+      <text x="24" y="146" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Pôr do Sol no Jacaré</text>
+      <text x="320" y="146" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">18/11/2026 às 16:30</text>
+      <rect x="520" y="130" width="85" height="24" rx="12" fill="#fef3c7" stroke="#fcd34d"/>
+      <text x="562" y="146" fill="#b45309" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">PENDING</text>
+      <rect x="790" y="130" width="66" height="26" rx="6" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="823" y="147" fill="#b91c1c" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">Cancelar</text>
+      <line x1="0" y1="174" x2="880" y2="174" stroke="#f1f5f9" stroke-width="1"/>
+
+      <!-- Row 3: COMPLETED -->
+      <text x="24" y="212" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Farol do Cabo Branco</text>
+      <text x="320" y="212" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">02/11/2026 às 10:00</text>
+      <rect x="520" y="196" width="95" height="24" rx="12" fill="#dbeafe" stroke="#93c5fd"/>
+      <text x="567" y="212" fill="#1d4ed8" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">COMPLETED</text>
+      <text x="856" y="212" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="end">★ Avaliar passeio</text>
+      <line x1="0" y1="240" x2="880" y2="240" stroke="#f1f5f9" stroke-width="1"/>
+
+      <!-- Row 4: CANCELLED -->
+      <text x="24" y="278" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13">Trilha dos Galinhos</text>
+      <text x="320" y="278" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="12">20/10/2026 às 08:00</text>
+      <rect x="520" y="262" width="95" height="24" rx="12" fill="#fee2e2" stroke="#fca5a5"/>
+      <text x="567" y="278" fill="#b91c1c" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">CANCELLED</text>
+      <text x="856" y="278" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="12" text-anchor="end">—</text>
+    </g>
+    </svg>

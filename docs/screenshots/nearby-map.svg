@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+    
+    <!-- Window chrome -->
+    <rect width="960" height="580" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect width="960" height="38" rx="12" fill="#1e293b"/>
+    <rect y="26" width="960" height="12" fill="#1e293b"/>
+    <circle cx="22" cy="19" r="6" fill="#ef4444"/>
+    <circle cx="40" cy="19" r="6" fill="#f59e0b"/>
+    <circle cx="58" cy="19" r="6" fill="#10b981"/>
+    <!-- URL bar -->
+    <rect x="180" y="8" width="600" height="22" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="480.0" y="23" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">🔒 https://titureco.com/nearby</text>
+    <!-- App area -->
+    <rect y="38" width="960" height="542" rx="0" fill="#f8fafc"/>
+    
+    
+    <!-- Navbar -->
+    <rect y="38" width="960" height="54" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="32" y="72" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="bold">Titureco</text>
+    
+    <!-- Nav tabs -->
+    <text x="140" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Explorar</text>
+    <text x="220" y="71" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Perto de Mim</text>
+    <text x="330" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Minhas Reservas</text>
+    <text x="470" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Dashboard</text>
+
+    <!-- User badge -->
+    <rect x="750" y="50" width="180" height="30" rx="15" fill="#f1f5f9"/>
+    <circle cx="765" cy="65" r="10" fill="#2563eb"/>
+    <text x="765" y="69" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">T</text>
+    <text x="782" y="69" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="500">Iago Santos · Turista</text>
+    
+    
+    <!-- Controls Subheader -->
+    <rect y="92" width="960" height="42" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="24" y="118" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Atrações Próximas</text>
+    <text x="170" y="118" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Raio: 15 km</text>
+    <!-- Range slider -->
+    <rect x="245" y="112" width="130" height="8" rx="4" fill="#e2e8f0"/>
+    <rect x="245" y="112" width="60" height="8" rx="4" fill="#2563eb"/>
+    <circle cx="305" cy="116" r="8" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+    <text x="400" y="118" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">● 4 atrações no raio selecionado (PostGIS)</text>
+    
+    <!-- Left Sidebar (synchronized list) -->
+    <rect x="0" y="134" width="310" height="446" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    
+    <!-- Sidebar item 1 (Selected) -->
+    <g transform="translate(14, 150)">
+      <rect width="282" height="92" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+      <text x="14" y="24" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Piscinas Naturais do Seixas</text>
+      <text x="14" y="42" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">Guia: Maria Santos · 3.2 km de você</text>
+      <text x="14" y="64" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.9 (42)</text>
+      <text x="14" y="80" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold">R$ 90,00 · 8 vagas</text>
+      <text x="270" y="80" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="end">Ver detalhes →</text>
+    </g>
+
+    <!-- Sidebar item 2 -->
+    <g transform="translate(14, 252)">
+      <rect width="282" height="92" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="14" y="24" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Farol do Cabo Branco</text>
+      <text x="14" y="42" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">Guia: João Silva · 5.8 km de você</text>
+      <text x="14" y="64" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.9 (38)</text>
+      <text x="14" y="80" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold">R$ 40,00 · 20 vagas</text>
+      <text x="270" y="80" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="end">Ver detalhes →</text>
+    </g>
+
+    <!-- Sidebar item 3 -->
+    <g transform="translate(14, 354)">
+      <rect width="282" height="92" rx="8" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+      <text x="14" y="24" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="bold">Centro Histórico &amp; Hotel Globo</text>
+      <text x="14" y="42" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">Guia: Ana Beatriz · 8.4 km de você</text>
+      <text x="14" y="64" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.7 (29)</text>
+      <text x="14" y="80" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold">R$ 35,00 · 12 vagas</text>
+      <text x="270" y="80" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="end">Ver detalhes →</text>
+    </g>
+
+    <!-- Map Canvas (Right) -->
+    <rect x="310" y="134" width="650" height="446" fill="#e5e7eb"/>
+    <!-- Stylized coastline / water -->
+    <path d="M 520 134 Q 570 300, 600 420 T 680 580 L 960 580 L 960 134 Z" fill="#bae6fd" opacity="0.8"/>
+    <!-- Roads grid -->
+    <path d="M 310 240 L 600 220 L 700 350 M 420 134 L 440 500 M 310 400 L 750 430" stroke="#cbd5e1" stroke-width="3" fill="none"/>
+    
+    <!-- User location & Radius circle -->
+    <circle cx="530" cy="310" r="140" fill="#3b82f6" fill-opacity="0.12" stroke="#2563eb" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <circle cx="530" cy="310" r="10" fill="#2563eb" stroke="#ffffff" stroke-width="3"/>
+    <rect x="475" y="260" width="110" height="24" rx="4" fill="#0f172a" opacity="0.9"/>
+    <text x="530" y="276" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Você está aqui</text>
+    
+    <!-- Pin 1: Seixas (with open popup) -->
+    <g transform="translate(635, 290)">
+      <circle cx="0" cy="0" r="14" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+      <text x="0" y="4" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">★</text>
+      <!-- Popup box -->
+      <rect x="-85" y="-95" width="170" height="80" rx="8" fill="#ffffff" stroke="#334155" stroke-width="1"/>
+      <polygon points="-8,-15 8,-15 0,-2" fill="#ffffff"/>
+      <text x="-75" y="-76" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold">Piscinas do Seixas</text>
+      <text x="-75" y="-60" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="10">R$ 90,00 · ★ 4.9 (42)</text>
+      <rect x="-75" y="-48" width="150" height="22" rx="4" fill="#2563eb"/>
+      <text x="0" y="-33" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">Ver Detalhes</text>
+    </g>
+
+    <!-- Cluster Pin 2 (Farol & Penha) -->
+    <g transform="translate(560, 190)">
+      <circle cx="0" cy="0" r="18" fill="#f59e0b" stroke="#ffffff" stroke-width="3"/>
+      <text x="0" y="4" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="11" font-weight="bold" text-anchor="middle">2</text>
+    </g>
+
+    <!-- Pin 3: Centro Histórico -->
+    <g transform="translate(410, 240)">
+      <circle cx="0" cy="0" r="14" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+      <text x="0" y="4" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">★</text>
+    </g>
+    </svg>
