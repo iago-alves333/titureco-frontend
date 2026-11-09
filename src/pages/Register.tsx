@@ -1,104 +1,120 @@
-import { useState } from 'react';
-import type { FormEvent, ChangeEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import api from '@/services/api';
-import type { RegisterRequest } from '@/types/api';
+import { getErrorMessage } from '@/lib/utils';
+import { usePageTitle } from '@/lib/hooks';
+
+const registerSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(2, 'O nome deve ter entre 2 e 100 caracteres')
+    .max(100, 'O nome deve ter entre 2 e 100 caracteres'),
+  email: z.email('Formato de e-mail inválido'),
+  password: z
+    .string()
+    .min(6, 'A senha deve ter entre 6 e 50 caracteres')
+    .max(50, 'A senha deve ter entre 6 e 50 caracteres'),
+});
+
+type RegisterFormValues = z.infer<typeof registerSchema>;
 
 export default function Register() {
+  usePageTitle('Criar Conta');
   const navigate = useNavigate();
-  const [form, setForm] = useState<RegisterRequest>({ name: '', email: '', password: '' });
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  async function handleSubmit(e: FormEvent) {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<RegisterFormValues>({
+    resolver: zodResolver(registerSchema),
+    defaultValues: { name: '', email: '', password: '' },
+  });
+
+  async function onSubmit(values: RegisterFormValues) {
     try {
-      await api.post('/api/v1/auth/register', form);
+      await api.post('/api/v1/auth/register', values);
+      toast.success('Conta criada com sucesso! Faça login para continuar.');
       navigate('/login', { replace: true });
-    } catch {
-      setError('Erro ao criar conta. Verifique os dados ou tente outro e-mail.');
-    } finally {
-      setLoading(false);
+    } catch (err) {
+      toast.error(getErrorMessage(err, 'Erro ao criar conta. Verifique os dados.'));
     }
   }
 
-  function onChange(field: keyof RegisterRequest) {
-    return (e: ChangeEvent<HTMLInputElement>) => setForm({ ...form, [field]: e.target.value });
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <main className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md border border-border bg-card shadow-sm">
         <CardHeader className="text-center">
           <CardTitle className="text-3xl font-bold tracking-tight text-foreground">
-            Titureco
+            <Link to="/">Titureco</Link>
           </CardTitle>
           <CardDescription className="text-muted-foreground">
             Crie sua conta para explorar atrações
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
+            <div className="space-y-1.5">
               <Label htmlFor="name">Nome</Label>
               <Input
                 id="name"
                 placeholder="Seu nome"
-                value={form.name}
-                onChange={onChange('name')}
-                required
-                minLength={2}
-                maxLength={100}
                 autoComplete="name"
+                aria-invalid={Boolean(errors.name)}
+                {...register('name')}
               />
+              {errors.name && (
+                <p className="text-xs text-destructive">{errors.name.message}</p>
+              )}
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="email">E-mail</Label>
               <Input
                 id="email"
                 type="email"
                 placeholder="seu@email.com"
-                value={form.email}
-                onChange={onChange('email')}
-                required
                 autoComplete="email"
+                aria-invalid={Boolean(errors.email)}
+                {...register('email')}
               />
+              {errors.email && (
+                <p className="text-xs text-destructive">{errors.email.message}</p>
+              )}
             </div>
-            <div className="space-y-2">
+            <div className="space-y-1.5">
               <Label htmlFor="password">Senha</Label>
               <Input
                 id="password"
                 type="password"
                 placeholder="Mínimo 6 caracteres"
-                value={form.password}
-                onChange={onChange('password')}
-                required
-                minLength={6}
-                maxLength={50}
                 autoComplete="new-password"
+                aria-invalid={Boolean(errors.password)}
+                {...register('password')}
               />
+              {errors.password && (
+                <p className="text-xs text-destructive">{errors.password.message}</p>
+              )}
             </div>
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? 'Criando…' : 'Criar Conta'}
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
+              {isSubmitting ? 'Criando…' : 'Criar Conta'}
             </Button>
             <p className="text-center text-sm text-muted-foreground">
               Já tem conta?{' '}
-              <button type="button" onClick={() => navigate('/login')} className="text-primary underline underline-offset-2">
+              <Link to="/login" className="text-primary underline underline-offset-2">
                 Entrar
-              </button>
+              </Link>
             </p>
           </form>
         </CardContent>
       </Card>
-    </div>
+    </main>
   );
 }

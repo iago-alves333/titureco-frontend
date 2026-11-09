@@ -14,23 +14,27 @@ interface AuthContextValue {
   isLoading: boolean;
   login: (email: string, password: string) => Promise<LoginResponse>;
   logout: () => Promise<void>;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(() => Boolean(localStorage.getItem('accessToken')));
+
+  const refreshUser = useCallback(async () => {
+    const { data } = await api.get<UserResponse>('/api/v1/auth/me');
+    setUser({ id: data.id, name: data.name, role: data.role });
+  }, []);
 
   // Hydrate session on mount via GET /api/v1/auth/me
   useEffect(() => {
     const token = localStorage.getItem('accessToken');
-    if (!token) {
-      setIsLoading(false);
-      return;
-    }
+    if (!token) return;
 
-    api.get<UserResponse>('/api/v1/auth/me')
+    api
+      .get<UserResponse>('/api/v1/auth/me')
       .then(({ data }) => {
         setUser({ id: data.id, name: data.name, role: data.role });
       })
@@ -70,7 +74,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, isLoading, login, logout, refreshUser }}>
       {children}
     </AuthContext.Provider>
   );

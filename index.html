@@ -1,10 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>titureco-frontend</title>
+    <title>Titureco · Atrações turísticas</title>
+    <meta name="description" content="Descubra atrações turísticas perto de você, reserve passeios com guias locais e avalie suas experiências." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Titureco · Atrações turísticas" />
+    <meta property="og:description" content="Descubra atrações turísticas perto de você, reserve passeios com guias locais e avalie suas experiências." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Apply saved/system theme before first paint to avoid a light flash.
+      document.documentElement.classList.toggle('dark',
+        localStorage.theme === 'dark' || (!localStorage.theme && matchMedia('(prefers-color-scheme: dark)').matches));
+    </script>
   </head>
   <body>
     <div id="root"></div>
