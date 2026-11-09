@@ -99,7 +99,7 @@ export interface ReservationResponse {
   id: string;
   touristId: string;
   touristName: string;
-  attractionID: string; // matches Java field name
+  attractionId: string;
   attractionTitle: string;
   status: Status;
   reservedFor: string;
