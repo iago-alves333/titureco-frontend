@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="580" viewBox="0 0 960 580">
+    
+    <!-- Window chrome -->
+    <rect width="960" height="580" rx="12" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+    <rect width="960" height="38" rx="12" fill="#1e293b"/>
+    <rect y="26" width="960" height="12" fill="#1e293b"/>
+    <circle cx="22" cy="19" r="6" fill="#ef4444"/>
+    <circle cx="40" cy="19" r="6" fill="#f59e0b"/>
+    <circle cx="58" cy="19" r="6" fill="#10b981"/>
+    <!-- URL bar -->
+    <rect x="180" y="8" width="600" height="22" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+    <text x="480.0" y="23" fill="#94a3b8" font-family="DejaVu Sans, sans-serif" font-size="11" text-anchor="middle">🔒 https://titureco.com/?q=praia&amp;sort=ratingAverage,desc</text>
+    <!-- App area -->
+    <rect y="38" width="960" height="542" rx="0" fill="#f8fafc"/>
+    
+    
+    <!-- Navbar -->
+    <rect y="38" width="960" height="54" fill="#ffffff" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="32" y="72" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="20" font-weight="bold">Titureco</text>
+    
+    <!-- Nav tabs -->
+    <text x="140" y="71" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Explorar</text>
+    <text x="220" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Perto de Mim</text>
+    <text x="330" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Minhas Reservas</text>
+    <text x="470" y="71" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" font-weight="600">Dashboard</text>
+
+    <!-- User badge -->
+    <rect x="750" y="50" width="180" height="30" rx="15" fill="#f1f5f9"/>
+    <circle cx="765" cy="65" r="10" fill="#2563eb"/>
+    <text x="765" y="69" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="10" font-weight="bold" text-anchor="middle">T</text>
+    <text x="782" y="69" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="500">Iago Santos · Turista</text>
+    
+    
+    <!-- Hero / Header -->
+    <text x="480.0" y="132" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">Descubra atrações incríveis</text>
+    <text x="480.0" y="154" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="13" text-anchor="middle">Explore destinos turísticos com guias locais e reserve em poucos cliques</text>
+    
+    <!-- Search Controls -->
+    <rect x="180" y="172" width="400" height="38" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="200" y="196" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="13">🔍 praia</text>
+    
+    <!-- Sort dropdown -->
+    <rect x="590" y="172" width="180" height="38" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+    <text x="605" y="196" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">Melhor avaliação ▼</text>
+    
+    <!-- Nearby button -->
+    <rect x="780" y="172" width="120" height="38" rx="8" fill="#2563eb"/>
+    <text x="840" y="196" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600" text-anchor="middle">📍 No Mapa</text>
+
+    <!-- Cards Row -->
+    <!-- Card 1 -->
+    <g transform="translate(40, 230)">
+      <rect width="275" height="310" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect width="275" height="150" rx="12" fill="#38bdf8"/>
+      <!-- Coastal illustration -->
+      <path d="M 0 110 Q 70 80, 140 100 T 275 90 L 275 150 L 0 150 Z" fill="#0284c7" opacity="0.6"/>
+      <circle cx="210" cy="50" r="22" fill="#fef08a" opacity="0.8"/>
+      <rect x="175" y="115" width="90" height="26" rx="6" fill="#0f172a" opacity="0.85"/>
+      <text x="220" y="132" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">R$ 90,00</text>
+      
+      <text x="16" y="180" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="bold">Piscinas Naturais do Seixas</text>
+      <text x="16" y="200" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Guia: Maria Santos</text>
+      <text x="16" y="222" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">Passeio de catamarã até as piscinas</text>
+      <text x="16" y="238" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">de águas cristalinas com snorkel.</text>
+      <line x1="16" y1="262" x2="259" y2="262" stroke="#f1f5f9" stroke-width="1.5"/>
+      <text x="16" y="285" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.9</text>
+      <text x="56" y="285" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">(42 avaliações)</text>
+      <text x="259" y="285" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600" text-anchor="end">8 vagas/dia</text>
+    </g>
+
+    <!-- Card 2 -->
+    <g transform="translate(342, 230)">
+      <rect width="275" height="310" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect width="275" height="150" rx="12" fill="#f97316"/>
+      <!-- Sunset illustration -->
+      <circle cx="137" cy="130" r="50" fill="#fde047" opacity="0.9"/>
+      <path d="M 0 120 C 80 110, 190 135, 275 115 L 275 150 L 0 150 Z" fill="#c2410c" opacity="0.7"/>
+      <rect x="175" y="115" width="90" height="26" rx="6" fill="#0f172a" opacity="0.85"/>
+      <text x="220" y="132" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">R$ 50,00</text>
+      
+      <text x="16" y="180" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="bold">Pôr do Sol no Jacaré</text>
+      <text x="16" y="200" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Guia: Carlos Lima</text>
+      <text x="16" y="222" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">Aprecie o saxofone ao vivo na praia</text>
+      <text x="16" y="238" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">fluvial do Jacaré no entardecer.</text>
+      <line x1="16" y1="262" x2="259" y2="262" stroke="#f1f5f9" stroke-width="1.5"/>
+      <text x="16" y="285" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.8</text>
+      <text x="56" y="285" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">(56 avaliações)</text>
+      <text x="259" y="285" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600" text-anchor="end">15 vagas/dia</text>
+    </g>
+
+    <!-- Card 3 -->
+    <g transform="translate(645, 230)">
+      <rect width="275" height="310" rx="12" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+      <rect width="275" height="150" rx="12" fill="#14b8a6"/>
+      <!-- Lighthouse illustration -->
+      <polygon points="120,40 145,40 155,150 110,150" fill="#f8fafc"/>
+      <rect x="115" y="30" width="35" height="15" fill="#dc2626"/>
+      <path d="M 0 125 Q 120 110, 275 130 L 275 150 L 0 150 Z" fill="#0f766e" opacity="0.7"/>
+      <rect x="175" y="115" width="90" height="26" rx="6" fill="#0f172a" opacity="0.85"/>
+      <text x="220" y="132" fill="#ffffff" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold" text-anchor="middle">R$ 40,00</text>
+      
+      <text x="16" y="180" fill="#0f172a" font-family="DejaVu Sans, sans-serif" font-size="14" font-weight="bold">Farol do Cabo Branco</text>
+      <text x="16" y="200" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="12">Guia: João Silva</text>
+      <text x="16" y="222" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">O ponto mais oriental das Américas</text>
+      <text x="16" y="238" fill="#334155" font-family="DejaVu Sans, sans-serif" font-size="12">com vista panorâmica para o oceano.</text>
+      <line x1="16" y1="262" x2="259" y2="262" stroke="#f1f5f9" stroke-width="1.5"/>
+      <text x="16" y="285" fill="#ca8a04" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="bold">★ 4.9</text>
+      <text x="56" y="285" fill="#64748b" font-family="DejaVu Sans, sans-serif" font-size="11">(38 avaliações)</text>
+      <text x="259" y="285" fill="#2563eb" font-family="DejaVu Sans, sans-serif" font-size="12" font-weight="600" text-anchor="end">20 vagas/dia</text>
+    </g>
+    </svg>
