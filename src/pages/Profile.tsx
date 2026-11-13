@@ -39,7 +39,7 @@ export default function Profile() {
   const queryClient = useQueryClient();
 
   const { data: profile, isLoading } = useQuery({
-    queryKey: ['auth', 'me'],
+    queryKey: ['auth', 'me', user?.id],
     queryFn: async () => {
       const { data } = await api.get<UserResponse>('/api/v1/auth/me');
       return data;
@@ -75,7 +75,7 @@ export default function Profile() {
     },
     onSuccess: async () => {
       await refreshUser();
-      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+      queryClient.invalidateQueries({ queryKey: ['auth', 'me', user?.id] });
       toast.success('Perfil atualizado com sucesso!');
     },
     onError: (err) => {
@@ -135,11 +135,16 @@ export default function Profile() {
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="email">Novo e-mail (opcional)</Label>
+                <Label htmlFor="email">E-mail</Label>
+                {profile?.email && (
+                  <p className="text-xs text-muted-foreground">
+                    Atual: <span className="font-medium text-foreground">{profile.email}</span>
+                  </p>
+                )}
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Deixe em branco para manter o atual"
+                  placeholder="Novo e-mail (deixe em branco para manter o atual)"
                   autoComplete="email"
                   aria-invalid={Boolean(errors.email)}
                   {...register('email')}

@@ -20,7 +20,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import attractionImages from '@/data/attraction-images.json';
 import { TILE_ATTRIBUTION, TILE_URL } from '@/lib/leaflet';
-import { formatBRL, getErrorMessage } from '@/lib/utils';
+import { formatBRL, getErrorMessage, toLocalDateISO } from '@/lib/utils';
 import { usePageTitle } from '@/lib/hooks';
 
 export default function AttractionDetail() {
@@ -60,7 +60,7 @@ export default function AttractionDetail() {
 
   // Fetch tourist's reservations to check if they completed a visit to this attraction
   const { data: myReservations = [] } = useQuery({
-    queryKey: ['reservations', 'mine'],
+    queryKey: ['reservations', 'mine', user?.id],
     enabled: user?.role === 'TOURIST',
     queryFn: async () => {
       const { data } = await api.get<SpringPage<ReservationResponse>>('/api/v1/reservations', {
@@ -88,7 +88,7 @@ export default function AttractionDetail() {
       toast.success('Reserva criada com sucesso!');
       setReserveDate('');
       setReserveHour('09:00');
-      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine'] });
+      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine', user?.id] });
       queryClient.invalidateQueries({ queryKey: ['attraction', id] });
     },
     onError: (err) => {
@@ -136,6 +136,12 @@ export default function AttractionDetail() {
 
   function handleReserve(e: FormEvent) {
     e.preventDefault();
+    if (!reserveDate) return;
+    const selected = new Date(`${reserveDate}T${reserveHour}:00`);
+    if (Number.isNaN(selected.getTime()) || selected <= new Date()) {
+      toast.error('A data e horário da reserva devem estar no futuro.');
+      return;
+    }
     reserveMutation.mutate();
   }
 
@@ -175,7 +181,10 @@ export default function AttractionDetail() {
   const imageUrl =
     (attractionImages as Record<string, string>)[a.id] ||
     `https://picsum.photos/seed/${a.id}/600/400`;
-  const tomorrowIso = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const tomorrowIso = toLocalDateISO(
+    new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+  );
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">

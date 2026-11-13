@@ -93,6 +93,7 @@ export default function AdminUsers() {
               <TableHeader>
                 <TableRow>
                   <TableHead>Nome</TableHead>
+                  <TableHead>E-mail</TableHead>
                   <TableHead>Role</TableHead>
                   <TableHead>Criado em</TableHead>
                   <TableHead className="text-right">Ações</TableHead>
@@ -104,6 +105,9 @@ export default function AdminUsers() {
                   return (
                     <TableRow key={u.id}>
                       <TableCell className="font-medium">{u.name}</TableCell>
+                      <TableCell className="text-muted-foreground text-xs">
+                        {u.email || '—'}
+                      </TableCell>
                       <TableCell>
                         <Badge
                           variant={u.role === 'ADMIN' ? 'default' : 'secondary'}

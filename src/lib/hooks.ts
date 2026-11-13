@@ -23,13 +23,12 @@ export function useMyAttractions(userId?: string, isAdmin = false) {
     queryKey: ['attractions', 'mine', userId, isAdmin],
     enabled: Boolean(userId),
     queryFn: async () => {
-      // ponytail: no backend filter by guideId; fetch up to 200 and filter client-side.
-      // Ceiling: breaks past ~200 attractions. Upgrade: add ?guideId= filter on GET /api/v1/attractions.
+      // ponytail: single-page fetch capped at backend max-page-size (100).
+      // Ceiling: lists above 100 items truncate. Upgrade: paginate Dashboard/MapRegister.
       const { data } = await api.get<SpringPage<AttractionResponse>>('/api/v1/attractions', {
-        params: { size: 200 },
+        params: isAdmin ? { size: 100 } : { guideId: userId, size: 100 },
       });
-      const list = data.content ?? [];
-      return isAdmin ? list : list.filter((a) => a.guideId === userId);
+      return data.content ?? [];
     },
   });
 }
