@@ -1,7 +1,7 @@
 # Titureco — Frontend
 
 [![React](https://img.shields.io/badge/React-19.2-blue?logo=react&logoColor=white)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0-blue?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-8.2-purple?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![TanStack Query](https://img.shields.io/badge/TanStack_Query-v5-ff4154?logo=react-query&logoColor=white)](https://tanstack.com/query)
@@ -68,7 +68,7 @@ flowchart TD
     subgraph Backend["⚙️ Backend API (Spring Boot 3.3)"]
         SecFilter["Spring Security + RateLimitFilter (Bucket4j)"]
         REST["Controllers REST (/api/v1/...)"]
-        DB[(PostgreSQL 16 + PostGIS)]
+        DB[(PostgreSQL 15 + PostGIS)]
         RedisCache[(Redis Cache & JWT Blacklist)]
     end
 
@@ -190,7 +190,7 @@ sequenceDiagram
     API-->>UI: Respostas 200 OK com dados atualizados
 ```
 
-Se o `refreshToken` estiver expirado ou revogado no Redis, o interceptor dispara um evento customizado `window.dispatchEvent(new Event('auth:logout'))`, limpando o estado global no `AuthContext` e redirecionando para a tela de login.
+Se o `refreshToken` estiver expirado ou revogado no banco (`refresh_tokens`), o interceptor dispara um evento customizado `window.dispatchEvent(new Event('auth:logout'))`, limpando a sessão e o cache do `QueryClient` (`queryClient.clear()`) no `AuthContext` e redirecionando para a tela de login.
 
 ---
 
@@ -199,9 +199,9 @@ Se o `refreshToken` estiver expirado ou revogado no Redis, o interceptor dispara
 O mapa do Leaflet e seus assets representam mais de 190 KB de código minificado. Com `React.lazy` e `Suspense`, as rotas pesadas só são baixadas quando o usuário realmente navega até elas:
 
 ```
-dist/assets/index-txgq9B54.js              310.25 kB │ gzip: 96.58 kB  (Bundle inicial da SPA)
-dist/assets/leaflet-CRWbPGcm.js            193.69 kB │ gzip: 58.51 kB  (Carregado apenas em /nearby e /guide/map)
-dist/assets/dialog-DZJ0F4to.js              52.25 kB │ gzip: 17.64 kB  (Carregado sob demanda em modais)
+dist/assets/index-CE9gDnhy.js              310.31 kB │ gzip: 96.60 kB  (Bundle inicial da SPA)
+dist/assets/leaflet-BPANFw29.js            193.69 kB │ gzip: 58.51 kB  (Carregado apenas em /nearby e /guide/map)
+dist/assets/dialog-DvtjJ6nL.js              52.26 kB │ gzip: 17.65 kB  (Carregado sob demanda em modais)
 ```
 
 O bundle principal caiu de **604 KB em arquivo único** para **310 KB**.
@@ -236,18 +236,18 @@ titureco-frontend/
 │   │   ├── ProtectedRoute.tsx # Guardião de rotas com preservação de rota de retorno
 │   │   └── ErrorBoundary.tsx # Captura de erros de runtime do React
 │   ├── contexts/
-│   │   └── AuthContext.tsx  # Sessão do usuário autenticado e integração de logout
+│   │   └── AuthContext.tsx  # Sessão do usuário autenticado e limpeza de cache no logout
 │   ├── data/
 │   │   └── attraction-images.json # Mapeamento estático de fotos por ID de atração
 │   ├── lib/
-│   │   ├── hooks.ts         # usePageTitle, useDebouncedValue, useMyAttractions
+│   │   ├── hooks.ts         # usePageTitle, useDebouncedValue, useMyAttractions (?guideId=)
 │   │   ├── leaflet.ts       # Setup de ícones, MarkerClusterGroup e constantes OSM
 │   │   ├── theme.ts         # Hook useIsDark e sincronização de tema sem re-render
-│   │   ├── utils.ts         # formatBRL e extrator de erros getErrorMessage
-│   │   └── utils.test.ts    # Testes unitários com node:test nativo
+│   │   ├── utils.ts         # cn, formatBRL, toLocalDateISO, attractionSchema e getErrorMessage
+│   │   └── utils.test.ts    # Testes unitários de utilitários e schemas (Vitest)
 │   ├── pages/
 │   │   ├── admin/
-│   │   │   └── AdminUsers.tsx      # Gestão de usuários, promoção e exclusão
+│   │   │   └── AdminUsers.tsx      # Gestão de usuários (nome, e-mail, role), promoção e exclusão
 │   │   ├── guide/
 │   │   │   ├── Dashboard.tsx       # Métricas, distribuição de status e ações
 │   │   │   ├── MapRegister.tsx     # Cadastro/edição de atração direto no mapa
@@ -256,10 +256,12 @@ titureco-frontend/
 │   │   │   ├── AttractionDetail.tsx # Detalhes, agendamento de passeio e reviews
 │   │   │   ├── Feed.tsx            # Feed infinito com busca debounced e ordenação
 │   │   │   ├── MyReservations.tsx  # Minhas reservas e cancelamento
+│   │   │   ├── MyReservations.test.tsx # Testes de integração da tela de reservas (Vitest + RTL)
 │   │   │   └── NearbyMap.tsx       # Mapa de atrações próximas com raio PostGIS
 │   │   ├── Login.tsx        # Formulário com React Hook Form + Zod
+│   │   ├── Login.test.tsx   # Testes do fluxo de login, redirecionamento por role e erro 429
 │   │   ├── Register.tsx     # Cadastro com validação espelhada da API
-│   │   ├── Profile.tsx      # Edição de perfil (nome, email, senha)
+│   │   ├── Profile.tsx      # Visualização e edição de perfil (nome, e-mail, senha)
 │   │   └── NotFound.tsx     # Página 404 personalizada
 │   ├── services/
 │   │   └── api.ts           # Cliente Axios configurado com fila de Refresh Token
@@ -278,15 +280,15 @@ titureco-frontend/
 ## 5. Como Executar Localmente
 
 ### Pré-requisitos
-- **Node.js** >= 18.0.0
-- **npm** >= 9.0.0
+- **Node.js** >= 22.0.0
+- **npm** >= 10.0.0
 - Backend Titureco rodando em `http://localhost:8080` (consulte o repositório do backend)
 
 ### Passo a Passo
 
 1. **Clone o repositório e acesse a pasta:**
    ```bash
-   git clone https://github.com/iagovictorino/titureco-frontend.git
+   git clone https://github.com/iago-alves333/titureco-frontend.git
    cd titureco-frontend
    ```
 
@@ -312,12 +314,12 @@ titureco-frontend/
    npm run build
    ```
 
-6. **Executar testes unitários:**
+6. **Executar testes (Vitest + Testing Library):**
    ```bash
    npm test
    ```
 
-7. **Executar linting:**
+7. **Executar linting (Oxlint):**
    ```bash
    npm run lint
    ```
@@ -326,10 +328,12 @@ titureco-frontend/
 
 ## 6. Credenciais de Teste
 
-Para testar rapidamente os fluxos e permissões da plataforma, utilize as contas padrão criadas pelo seeder do backend:
+Quando o backend é iniciado com o profile `dev` (`--spring.profiles.active=dev`), a migration `V2__Insert_Initial_Data.sql` cria automaticamente as seguintes contas de demonstração:
 
 | Perfil | E-mail | Senha | Acessos |
 |---|---|---|---|
-| 👑 **Administrador** | `admin@titureco.com` | `admin123` | Painel Admin (`/admin/users`), todas as atrações e reservas |
-| 🗺️ **Guia** | `guia@titureco.com` | `senha123` | Dashboard (`/guide/dashboard`), cadastro no mapa e participantes |
-| 🎒 **Turista** | `turista@titureco.com` | `senha123` | Explorar (`/`), mapa próximo (`/nearby`), reservas e avaliações |
+| 👑 **Administrador** | `admin@titureco.com` | `senha123` | Painel Admin (`/admin/users`), todas as atrações e reservas |
+| 🗺️ **Guia** | `guia1@titureco.com` ou `guia2@titureco.com` | `senha123` | Dashboard (`/guide/dashboard`), cadastro no mapa e participantes |
+| 🎒 **Turista** | `turista1@titureco.com` ou `turista2@titureco.com` | `senha123` | Explorar (`/`), mapa próximo (`/nearby`), reservas e avaliações |
+
+> **Nota:** Fora do profile `dev`, o `AdminSeeder` do backend cria o administrador `admin@admin.com` usando a senha definida na variável de ambiente `ADMIN_SEED_PASSWORD`.
