@@ -20,7 +20,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Separator } from '@/components/ui/separator';
 import attractionImages from '@/data/attraction-images.json';
 import { TILE_ATTRIBUTION, TILE_URL } from '@/lib/leaflet';
-import { formatBRL, getErrorMessage } from '@/lib/utils';
+import { formatBRL, getErrorMessage, toLocalDateISO } from '@/lib/utils';
 import { usePageTitle } from '@/lib/hooks';
 
 export default function AttractionDetail() {
@@ -136,6 +136,12 @@ export default function AttractionDetail() {
 
   function handleReserve(e: FormEvent) {
     e.preventDefault();
+    if (!reserveDate) return;
+    const selected = new Date(`${reserveDate}T${reserveHour}:00`);
+    if (Number.isNaN(selected.getTime()) || selected <= new Date()) {
+      toast.error('A data e horário da reserva devem estar no futuro.');
+      return;
+    }
     reserveMutation.mutate();
   }
 
@@ -175,7 +181,10 @@ export default function AttractionDetail() {
   const imageUrl =
     (attractionImages as Record<string, string>)[a.id] ||
     `https://picsum.photos/seed/${a.id}/600/400`;
-  const tomorrowIso = new Date().toISOString().split('T')[0];
+  const now = new Date();
+  const tomorrowIso = toLocalDateISO(
+    new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1),
+  );
 
   return (
     <div className="mx-auto max-w-4xl px-4 py-8 space-y-8">

@@ -35,6 +35,7 @@ export interface RefreshResponse {
 export interface UserResponse {
   id: string;
   name: string;
+  email: string;
   role: Role;
   createdAt: string;
 }

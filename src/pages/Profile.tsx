@@ -135,11 +135,16 @@ export default function Profile() {
               </div>
 
               <div className="space-y-1.5">
-                <Label htmlFor="email">Novo e-mail (opcional)</Label>
+                <Label htmlFor="email">E-mail</Label>
+                {profile?.email && (
+                  <p className="text-xs text-muted-foreground">
+                    Atual: <span className="font-medium text-foreground">{profile.email}</span>
+                  </p>
+                )}
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Deixe em branco para manter o atual"
+                  placeholder="Novo e-mail (deixe em branco para manter o atual)"
                   autoComplete="email"
                   aria-invalid={Boolean(errors.email)}
                   {...register('email')}

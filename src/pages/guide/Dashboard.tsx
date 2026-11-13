@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import api from '@/services/api';
@@ -25,25 +24,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import AttractionCard, { AttractionCardSkeleton } from '@/components/AttractionCard';
-import { cn, getErrorMessage } from '@/lib/utils';
+import { attractionSchema, cn, getErrorMessage, type AttractionFormValues } from '@/lib/utils';
 import { useMyAttractions, usePageTitle } from '@/lib/hooks';
-
-const attractionSchema = z.object({
-  title: z
-    .string()
-    .trim()
-    .min(1, 'O título é obrigatório')
-    .max(150, 'O título não pode ter mais de 150 caracteres'),
-  description: z
-    .string()
-    .max(2000, 'A descrição não pode ter mais de 2000 caracteres'),
-  price: z.number().min(0, 'O preço não pode ser negativo'),
-  availableSpots: z.number().int().min(0, 'A quantidade de vagas não pode ser negativa'),
-  latitude: z.number().min(-90, 'Latitude inválida').max(90, 'Latitude inválida'),
-  longitude: z.number().min(-180, 'Longitude inválida').max(180, 'Longitude inválida'),
-});
-
-type AttractionFormValues = z.infer<typeof attractionSchema>;
 
 const STATUS_META: { status: Status; label: string; barClass: string }[] = [
   { status: 'PENDING', label: 'Pendentes', barClass: 'bg-amber-500' },
