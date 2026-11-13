@@ -14,6 +14,12 @@ vi.mock('@/services/api', () => ({
   },
 }));
 
+vi.mock('@/contexts/AuthContext', () => ({
+  useAuth: () => ({
+    user: { id: 'tourist-1', name: 'Maria', role: 'TOURIST' },
+  }),
+}));
+
 vi.mock('sonner', () => ({
   toast: {
     success: vi.fn(),

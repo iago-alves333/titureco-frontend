@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/table';
 import { getErrorMessage } from '@/lib/utils';
 import { usePageTitle } from '@/lib/hooks';
+import { useAuth } from '@/contexts/AuthContext';
 
 const STATUS_LABELS: Record<Status, string> = {
   PENDING: 'Pendente',
@@ -33,11 +34,12 @@ const STATUS_COLORS: Record<Status, string> = {
 
 export default function MyReservations() {
   usePageTitle('Minhas Reservas');
+  const { user } = useAuth();
   const queryClient = useQueryClient();
   const [filter, setFilter] = useState<'ALL' | Status>('ALL');
 
   const { data: reservations = [], isLoading } = useQuery({
-    queryKey: ['reservations', 'mine'],
+    queryKey: ['reservations', 'mine', user?.id],
     queryFn: async () => {
       const { data } = await api.get<SpringPage<ReservationResponse>>('/api/v1/reservations', {
         params: { size: 100 },
@@ -52,7 +54,7 @@ export default function MyReservations() {
     },
     onSuccess: () => {
       toast.success('Reserva cancelada com sucesso.');
-      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine'] });
+      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine', user?.id] });
     },
     onError: (err) => {
       toast.error(getErrorMessage(err, 'Não foi possível cancelar a reserva.'));

@@ -39,7 +39,7 @@ export default function Profile() {
   const queryClient = useQueryClient();
 
   const { data: profile, isLoading } = useQuery({
-    queryKey: ['auth', 'me'],
+    queryKey: ['auth', 'me', user?.id],
     queryFn: async () => {
       const { data } = await api.get<UserResponse>('/api/v1/auth/me');
       return data;
@@ -75,7 +75,7 @@ export default function Profile() {
     },
     onSuccess: async () => {
       await refreshUser();
-      queryClient.invalidateQueries({ queryKey: ['auth', 'me'] });
+      queryClient.invalidateQueries({ queryKey: ['auth', 'me', user?.id] });
       toast.success('Perfil atualizado com sucesso!');
     },
     onError: (err) => {

@@ -60,7 +60,7 @@ export default function AttractionDetail() {
 
   // Fetch tourist's reservations to check if they completed a visit to this attraction
   const { data: myReservations = [] } = useQuery({
-    queryKey: ['reservations', 'mine'],
+    queryKey: ['reservations', 'mine', user?.id],
     enabled: user?.role === 'TOURIST',
     queryFn: async () => {
       const { data } = await api.get<SpringPage<ReservationResponse>>('/api/v1/reservations', {
@@ -88,7 +88,7 @@ export default function AttractionDetail() {
       toast.success('Reserva criada com sucesso!');
       setReserveDate('');
       setReserveHour('09:00');
-      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine'] });
+      queryClient.invalidateQueries({ queryKey: ['reservations', 'mine', user?.id] });
       queryClient.invalidateQueries({ queryKey: ['attraction', id] });
     },
     onError: (err) => {

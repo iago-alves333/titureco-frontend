@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import type { ReactNode } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import api from '@/services/api';
 import type { LoginResponse, UserResponse, Role } from '@/types/api';
 
@@ -20,6 +21,7 @@ interface AuthContextValue {
 const AuthContext = createContext<AuthContextValue | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const queryClient = useQueryClient();
   const [user, setUser] = useState<AuthUser | null>(null);
   const [isLoading, setIsLoading] = useState(() => Boolean(localStorage.getItem('accessToken')));
 
@@ -41,26 +43,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       .catch(() => {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
+        queryClient.clear();
       })
       .finally(() => setIsLoading(false));
-  }, []);
+  }, [queryClient]);
 
   // Listen for global auth:logout events triggered by 401 interceptor
   useEffect(() => {
     const handleAuthLogout = () => {
       setUser(null);
+      queryClient.clear();
     };
     window.addEventListener('auth:logout', handleAuthLogout);
     return () => window.removeEventListener('auth:logout', handleAuthLogout);
-  }, []);
+  }, [queryClient]);
 
   const login = useCallback(async (email: string, password: string): Promise<LoginResponse> => {
     const { data } = await api.post<LoginResponse>('/api/v1/auth/login', { email, password });
     localStorage.setItem('accessToken', data.accessToken);
     localStorage.setItem('refreshToken', data.refreshToken);
+    queryClient.clear();
     setUser({ id: data.userId, name: data.name, role: data.role });
     return data;
-  }, []);
+  }, [queryClient]);
 
   const logout = useCallback(async () => {
     try {
@@ -71,7 +76,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     setUser(null);
-  }, []);
+    queryClient.clear();
+  }, [queryClient]);
 
   return (
     <AuthContext.Provider value={{ user, isLoading, login, logout, refreshUser }}>
