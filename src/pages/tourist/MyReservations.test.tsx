@@ -123,4 +123,22 @@ describe('MyReservations Page', () => {
       expect(toast.success).toHaveBeenCalledWith('Reserva cancelada com sucesso.');
     });
   });
+
+  it('requests bounded page size and shows API error message when cancel fails', async () => {
+    const user = userEvent.setup();
+    mockApi.get.mockResolvedValueOnce({ data: { content: mockReservations } });
+    mockApi.patch.mockRejectedValueOnce({
+      response: { data: { message: 'Reserva não pode ser cancelada.' } },
+    });
+
+    renderWithProviders(<MyReservations />);
+
+    const cancelButtons = await screen.findAllByRole('button', { name: 'Cancelar' });
+    await user.click(cancelButtons[0]);
+
+    await waitFor(() => {
+      expect(mockApi.get).toHaveBeenCalledWith('/api/v1/reservations', { params: { size: 100 } });
+      expect(toast.error).toHaveBeenCalledWith('Reserva não pode ser cancelada.');
+    });
+  });
 });
