@@ -110,4 +110,68 @@ describe('Login Page', () => {
       expect(toast.error).toHaveBeenCalledWith('Credenciais inválidas');
     });
   });
+
+  it('redirects GUIDE and ADMIN users to their respective dashboards', async () => {
+    const user = userEvent.setup();
+    mockLogin.mockResolvedValueOnce({ name: 'Guia João', role: 'GUIDE' });
+
+    const { unmount } = render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    await user.type(screen.getByLabelText(/e-mail/i), 'guia@exemplo.com');
+    await user.type(screen.getByLabelText(/senha/i), 'senha123');
+    await user.click(screen.getByRole('button', { name: /entrar/i }));
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/guide/dashboard', { replace: true });
+    });
+
+    unmount();
+    vi.clearAllMocks();
+    mockLogin.mockResolvedValueOnce({ name: 'Admin Ana', role: 'ADMIN' });
+
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    await user.type(screen.getByLabelText(/e-mail/i), 'admin@exemplo.com');
+    await user.type(screen.getByLabelText(/senha/i), 'senha123');
+    await user.click(screen.getByRole('button', { name: /entrar/i }));
+
+    await waitFor(() => {
+      expect(mockNavigate).toHaveBeenCalledWith('/admin/users', { replace: true });
+    });
+  });
+
+  it('displays standardized 429 rate-limit message from API ErrorResponse', async () => {
+    const user = userEvent.setup();
+    mockLogin.mockRejectedValueOnce({
+      response: {
+        status: 429,
+        data: {
+          status: 429,
+          message: 'Muitas requisições. Tente novamente em 60 segundos.',
+        },
+      },
+    });
+
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+
+    await user.type(screen.getByLabelText(/e-mail/i), 'maria@exemplo.com');
+    await user.type(screen.getByLabelText(/senha/i), 'senha123');
+    await user.click(screen.getByRole('button', { name: /entrar/i }));
+
+    await waitFor(() => {
+      expect(toast.error).toHaveBeenCalledWith('Muitas requisições. Tente novamente em 60 segundos.');
+    });
+  });
 });
